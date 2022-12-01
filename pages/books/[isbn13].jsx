@@ -1,5 +1,4 @@
 import { Button, CardActionArea, CardMedia, Grid, Typography } from '@mui/material'
-import Image from 'next/image'
 import { useRouter } from 'next/router'
 import React, { useContext, useEffect, useState } from 'react'
 import { booksApi } from '../../api'
@@ -59,7 +58,7 @@ const booksPage = ({data}) => {
         router.push('/cart');
       }
 
-  console.log({bookTemp})
+
 
   return (
     <MainLayout title={ data.title } pageDescription={ data.desc } imageFullUrl={ data.image}> 

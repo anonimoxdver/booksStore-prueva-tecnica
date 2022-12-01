@@ -52,7 +52,7 @@ export default async function handler(req, res) {
     });
 
     const url = session.url;
-    console.log({session})
+
 
     if (url) {
       return res.status(200).send({ url });

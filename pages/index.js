@@ -1,18 +1,29 @@
-import { Grid } from '@mui/material'
+import { CircularProgress, Grid } from '@mui/material'
+import useSWR from 'swr'
 
-
-import { booksApi,  } from '../api'
 import { CardBook } from '../components/books/CardBook'
 
 
 import { MainLayout } from '../Layout/MainLayout'
 
 
-export default function Home({ data}) {
+export default function Home() {
 
 
 
+  const fetcher = (...args) => fetch(...args).then(res => res.json())
 
+  const { data, error } = useSWR("https://api.itbook.store/1.0/new", fetcher)
+
+
+
+  if ( !data ) {
+    return (
+      <MainLayout pageDescription={'Loading'} title={'Loading'}>
+        <CircularProgress size={50}/>
+      </MainLayout>
+    )
+  }
 
   
 
@@ -39,15 +50,3 @@ export default function Home({ data}) {
 
 
 
-// You should use getServerSideProps when:
-// - Only if you need to pre-render a page whose data must be fetched at request time
-export const getServerSideProps = async (ctx) => {
-  const { data } = await booksApi.get('/new') // your fetch function here 
-
-
-  return {
-    props: {
-      data
-    }
-  }
-}

@@ -50,8 +50,8 @@ export const CartBooks = ({ image, title,  autor,  subtitulo, isbn13, cantidad, 
                     alignItems="center"
                     sx={{ mt:2 }}
                 >
-                    <Typography variant='h5'>Numero de Articulos:<Typography variant='h6'>{cantidad}</Typography></Typography>
-                    <Typography variant='h5'>Precio:<Typography variant='h6'>{precio}</Typography></Typography>
+                    <Typography variant='h6'>Numero de Articulos:<Typography variant='h5'>{cantidad}</Typography></Typography>
+                    <Typography variant='h6'>Precio:<Typography variant='h5'>{precio}</Typography></Typography>
                 </Grid>
                         ): <></>
                     }
