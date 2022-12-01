@@ -2,7 +2,7 @@ import { Grid } from '@mui/material'
 import { useRouter } from 'next/router'
 import { booksApi } from '../../api'
 import { CardBook } from '../../components/books/CardBook'
-import { EmptySearch } from '../../components/emptySearch'
+import { EmptySearch } from '../../components/EmptySearch'
 import { MainLayout } from '../../Layout/MainLayout'
 
 const searchPage = ({ data }) => {

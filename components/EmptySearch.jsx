@@ -2,7 +2,7 @@ import NextLink from 'next/link'
 import BookIcon from '@mui/icons-material/Book';
 import { Box } from '@mui/system';
 import { Link, Typography } from '@mui/material';
-import { MainLayout } from '../Layout/MainLayout';
+
 
 
 export const EmptySearch = ({ wrongName }) => {
