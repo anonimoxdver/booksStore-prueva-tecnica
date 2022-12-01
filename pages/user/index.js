@@ -19,7 +19,7 @@ const userPage = () => {
  const getData = async() => {
       const {data} = await databaseApi.get('/orders/checkout')
       setSessionData(data)
-      console.log({data})
+
       return data
     }
 
@@ -28,7 +28,7 @@ const userPage = () => {
 
 
     const getOrders = async() => {
-       console.log(sessionData.sub)
+  
       const  {data: dataOrders} = await databaseApi.post('/orders/getOrder',  { sub: data.sub } )
       setOrders(dataOrders)
       setSeeOrders(!seeOrders)
@@ -66,10 +66,8 @@ const userPage = () => {
     }
 
   
-   const ordersItem = orders.map(( order) => order.orderItems ) 
-   console.log({ordersItem})
 
-console.log({orders})
+
 
 
 
@@ -124,11 +122,12 @@ console.log({orders})
                     direction="row"
                     justifyContent="space-evenly"
                     alignItems="center"
+                    key={order._id}
                     sx={{ mt:1 }}>
                     { order.isPaid && <Chip variant="outlined" color="success" label='Ordenes Pagadas'/>}
                       {
                         order.isPaid && order.orderItems.map(( order ) => (
-                          <CartBooks {...order} />
+                          <CartBooks {...order}  key={order.isbn13}/>
                         ))
                       }
                     </Grid>
@@ -142,7 +141,7 @@ console.log({orders})
                     {!order.isPaid && <Chip variant="outlined" color="error" label='Ordenes no Pagadas'/>}
                       {
                        !order.isPaid && order.orderItems.map(( order ) => (
-                          <CartBooks {...order} />
+                          <CartBooks {...order}  key={ books.isbn13}/>
                         ))
                       }
                          <Grid
@@ -153,8 +152,8 @@ console.log({orders})
                     alignItems="center"
                     sx={{ mt:2 }}
                 >
-                 <Typography variant='h5'>Numero de Articulos:<Typography variant='h6'>{order.numberOfItems}</Typography></Typography>
-                 <Typography variant='h5'>Total:<Typography variant='h6'>{order.subTotal}</Typography></Typography>
+                 <Typography variant='h6'>Numero de Articulos:<Typography variant='h5'>{order.numberOfItems}</Typography></Typography>
+                 <Typography variant='h6'>Total:<Typography variant='h5'>{order.subTotal}</Typography></Typography>
                 </Grid>
                     </Grid>
                 </>

@@ -1,18 +1,18 @@
 import { Grid } from '@mui/material'
-import { getSession, useSession} from 'next-auth/react'
-import { useContext } from 'react'
-import { booksApi, databaseApi } from '../api'
+
+
+import { booksApi,  } from '../api'
 import { CardBook } from '../components/books/CardBook'
-import { CartContext } from '../context'
+
 
 import { MainLayout } from '../Layout/MainLayout'
 
 
 export default function Home({ data}) {
 
-  const { data: dataSession, status } = useSession()
 
-  console.log({dataSession})
+
+
 
   
 

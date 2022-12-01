@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useEffect, useReducer } from "react";
 import { databaseApi } from "../api";
 import { CartContext } from "./CartProvider"
@@ -38,11 +37,11 @@ export const CartProvider = ({ children }) => {
         if ( !productInCart ) return dispatch({ type: types.AddBook, payload: [...state.cart, product ] })
 
 
-        // Acumular
+
         const updatedProducts = state.cart.map( p => {
             if ( p.isbn13 !== product.isbn13 ) return p;
 
-            // Actualizar la cantidad
+
             p.cantidad += product.cantidad;
             return p;
         });
@@ -68,7 +67,7 @@ export const CartProvider = ({ children }) => {
 
           
 
-            const message = 'this is a message'
+
             const {data} = await databaseApi.post('/orders', body);
 
              const {data: session} = await databaseApi.post('/orders/pay', body);

@@ -31,7 +31,7 @@ export const CardBook = ({ image, title, subtitle, isbn13, price }) => {
       </Typography>
     </CardContent>
     <CardActions>
-      <Button size="small" onClick={ onRedirectBook } >Learn More</Button>
+      <Button size="small" onClick={ onRedirectBook } >Ver mas</Button>
     </CardActions>
   </Card>
   )

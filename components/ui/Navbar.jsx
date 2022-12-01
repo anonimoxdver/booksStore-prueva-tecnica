@@ -1,8 +1,9 @@
 import NextLink from 'next/link'
 import { useSession} from 'next-auth/react'
-import { AppBar, Toolbar, Link, Typography, Box, Button, IconButton, Badge, Input, InputAdornment, Avatar, CircularProgress } from '@mui/material';
-import { ClearOutlined, SearchOutlined, ShoppingCartOutlined } from '@mui/icons-material';
+import { AppBar, Toolbar, Link, Typography, Box, Button, IconButton, Badge, Input, InputAdornment, Avatar, CircularProgress, Icon } from '@mui/material';
+import { ClearOutlined, SearchOutlined, ShoppingCartOutlined, Logout } from '@mui/icons-material';
 import { useRouter } from 'next/router';
+import { signIn } from "next-auth/react"
 import { useContext, useState } from 'react';
 import { CartContext } from '../../context';
 import {  stringAvatar } from '../../utils/getFirstLetters';
@@ -21,6 +22,13 @@ export const Navbar = () => {
     const onSearchTerm = () => {
         if( searchTerm.trim().length === 0 ) return;
         router.push(`/search/${ searchTerm }`);
+        
+    }
+
+    const onSignIn = () => {
+        signIn()
+        router.reload()
+        router.push('/')
     }
 
   return (
@@ -92,13 +100,20 @@ export const Navbar = () => {
                 </NextLink> 
              
                 :
-                <NextLink href='/user' passHref>
+                <>
+                   <NextLink href='/user' passHref>
                     <Link>
                         <IconButton color='info'>
                             <Avatar {...stringAvatar(data.user.name)}></Avatar>
                         </IconButton>
                     </Link>
                 </NextLink>
+
+                <IconButton onClick={onSignIn}>
+                    <Logout/>
+                </IconButton>
+                </>
+             
             }
 
 

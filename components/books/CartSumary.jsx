@@ -41,8 +41,8 @@ export const CartSumary = ({ book }) => {
                     alignItems="center"
                     sx={{ mt:2 }}
                 >
-                     <Typography variant='h4' ><Typography variant='h6'>Cantidad:</Typography>X{book.cantidad} </Typography>
-                     <Typography variant='h4' ><Typography variant='h6'>Precio:</Typography>${book.precio} </Typography>
+                     <Typography variant='h5' ><Typography variant='h4'>Cantidad:</Typography>X{book.cantidad} </Typography>
+                     <Typography variant='h5' ><Typography variant='h4'>Precio:</Typography>${book.precio} </Typography>
                      <Button
                         variant='contained' 
                         color='secondary' 

@@ -25,8 +25,6 @@ export const cartReducer = ( state = {} , action ) => {
                 cart: [],
                numberOfItems: 0,
                subTotal: 0,
-               tax: 0,
-               total: 0
             }
     
         default:

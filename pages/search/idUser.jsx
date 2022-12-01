@@ -1,8 +1,8 @@
-import { Avatar, Button, Chip, Grid, TextField, Typography } from '@mui/material'
+import {  Chip, Grid, TextField, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import { databaseApi } from '../../api'
 import { MainLayout } from '../../Layout/MainLayout'
-import VisibilityIcon from '@mui/icons-material/Visibility';
+
 import { CartBooks } from '../../components/books/CartBooks';
 
 
@@ -14,15 +14,12 @@ const idUserPage = () => {
     const [seeOrders, setSeeOrders] = useState(false)
 
     const onSearch = async() => {
-        console.log('hola')
+
         const {data} = await databaseApi.post('/orders/getOrder',  { sub: search } )
         setDataOrder(data)
         setSeeOrders(!seeOrders)
     }
 
-    console.log({dataOrder})
-
-    console.log({search})
 
   return (
     <MainLayout title={'busqueda de Productos'} pageDescription={'busqueda de Productos'}>
@@ -68,6 +65,7 @@ const idUserPage = () => {
                      direction="row"
                      justifyContent="space-evenly"
                      alignItems="center"
+                     key={ order._id}
                      sx={{ mt:1 }}>
                      { order.isPaid && <Chip variant="outlined" color="success" label='Ordenes Pagadas'/>}
                        {
@@ -86,7 +84,7 @@ const idUserPage = () => {
                      {!order.isPaid && <Chip variant="outlined" color="error" label='Ordenes no Pagadas'/>}
                        {
                         !order.isPaid && order.orderItems.map(( order ) => (
-                           <CartBooks {...order} />
+                           <CartBooks {...order} key={order.isbn13} />
                          ))
                        }
                           <Grid
@@ -97,8 +95,8 @@ const idUserPage = () => {
                      alignItems="center"
                      sx={{ mt:2 }}
                  >
-                  <Typography variant='h5'>Numero de Articulos:<Typography variant='h6'>{order.numberOfItems}</Typography></Typography>
-                  <Typography variant='h5'>Total:<Typography variant='h6'>{order.subTotal}</Typography></Typography>
+                  <Typography variant='h6'>Numero de Articulos:<Typography variant='h5'>{order.numberOfItems}</Typography></Typography>
+                  <Typography variant='h6'>Total:<Typography variant='h5'>{order.subTotal}</Typography></Typography>
                  </Grid>
                      </Grid>
                  </>

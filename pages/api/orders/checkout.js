@@ -46,20 +46,19 @@ const checkoutPayment = async (req, res) => {
     });
 
     const emailPayment = session.data.map(( payment ) => payment.customer_details.email )
-    const paymentStatus = session.data.map(( payment ) => payment.payment_status )
-    console.log({ emailPayment })
-    console.log( paymentStatus )
+
+
 
     db.connect()
 
     const product = await Order.find({ 'session.user.email' : emailPayment  })
-    console.log({product})
+
 
     const amountPayment = session.data.map(( payment ) => payment.amount_total / 100 )
-    console.log({amountPayment})
+
 
     const sameProduct = product.find(( product) => product.subTotal == amountPayment[0] )
-    console.log({sameProduct})
+
     
 
 
